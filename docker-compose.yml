@@ -1,3 +1,4 @@
+
 version: "3"
 services:
   windows:
@@ -8,7 +9,7 @@ services:
     cap_add:
       - NET_ADMIN
     environment:
-      VERSION: "10"
+      VERSION: "https://software-static.download.prss.microsoft.com/dbazure/88896407-ad00-4dc7-9759-3c549f05f747/22631.2428.231001-0608.23H2_NI_RELEASE_SVC_REFRESH_CLIENTENTERPRISEEVAL_OEMRET_X64FRE_EN-US.ISO"
       RAM_SIZE: "8G"
       CPU_CORES: "4"
       USER: "admin"
@@ -29,4 +30,3 @@ services:
       - TS_AUTHKEY=tskey-auth-kVTTehhFJb11CNTRL-zRk9vK5EFxbC38ZoBhBbwb7dWpjCmyGvd
       - TS_STATEFUL=true
     restart: on-failure
-    
