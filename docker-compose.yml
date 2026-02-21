@@ -12,7 +12,7 @@ services:
       - 3389:3389
     environment:
       VERSION: "10"
-      RAM_SIZE: "4G"
+      RAM_SIZE: "8G"
       CPU_CORES: "4"
       USER: "admin"
       PASS: "password123"
