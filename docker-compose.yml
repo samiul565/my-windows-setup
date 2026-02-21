@@ -1,28 +1,21 @@
-version: "3"
+version: '3'
 services:
-  desktop:
-    image: lscr.io/linuxserver/webtop:latest
-    container_name: linux-desktop
-    security_opt:
-      - seccomp:unconfined
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Dhaka
-      - TITLE=Linux-Coder
-    network_mode: service:tailscale
-    restart: always
-
-  tailscale:
-    image: tailscale/tailscale
-    container_name: tailscale
-    hostname: codespace-linux
+  windows:
+    image: dockurr/windows
+    container_name: windows
+    devices:
+      - /dev/kvm
     cap_add:
       - NET_ADMIN
-      - SYS_MODULE
-    volumes:
-      - /dev/net/tun:/dev/net/tun
+    ports:
+      - 3389:3389
+      - 8006:8006
+    stop_grace_period: 2m
     environment:
-      - TS_AUTHKEY=tskey-auth-kCtydA5gZ521CNTRL-77KYwpiGfZBmKcuJHs3GaB8YGC8oPFsS8
-      - TS_STATEFUL=true
+      VERSION: "10"
+      RAM_SIZE: "12G"
+      CPU_CORES: "4"
+    volumes:
+      - ./win_data:/storage
     restart: on-failure
+    
