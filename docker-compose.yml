@@ -7,14 +7,26 @@ services:
       - /dev/kvm
     cap_add:
       - NET_ADMIN
-    ports:
-      - 8006:8006
-      - 3389:3389
     environment:
       VERSION: "10"
       RAM_SIZE: "8G"
       CPU_CORES: "4"
       USER: "admin"
-      PASS: "password123"
+      PASS: "root123"
+    network_mode: service:tailscale
+    restart: on-failure
+
+  tailscale:
+    image: tailscale/tailscale
+    container_name: tailscale
+    hostname: codespace-win10
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    volumes:
+      - /dev/net/tun:/dev/net/tun
+    environment:
+      - TS_AUTHKEY=tskey-auth-kVTTehhFJb11CNTRL-zRk9vK5EFxbC38ZoBhBbwb7dWpjCmyGvd
+      - TS_STATEFUL=true
     restart: on-failure
     
