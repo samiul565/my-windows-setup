@@ -1,25 +1,23 @@
 version: "3"
 services:
-  windows:
-    image: dockurr/windows
-    container_name: windows
-    devices:
-      - /dev/kvm
-    cap_add:
-      - NET_ADMIN
+  desktop:
+    image: lscr.io/linuxserver/webtop:latest
+    container_name: linux-desktop
+    security_opt:
+      - seccomp:unconfined
     environment:
-      VERSION: "win10"
-      RAM_SIZE: "8G"
-      CPU_CORES: "4"
-      USER: "admin"
-      PASS: "root123"
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Dhaka
+      - SUBFOLDER=/
+      - TITLE=Linux-Coder
     network_mode: service:tailscale
-    restart: on-failure
+    restart: always
 
   tailscale:
     image: tailscale/tailscale
     container_name: tailscale
-    hostname: codespace-win10
+    hostname: codespace-linux
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
@@ -29,3 +27,4 @@ services:
       - TS_AUTHKEY=tskey-auth-kVTTehhFJb11CNTRL-zRk9vK5EFxbC38ZoBhBbwb7dWpjCmyGvd
       - TS_STATEFUL=true
     restart: on-failure
+    
