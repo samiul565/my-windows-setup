@@ -9,7 +9,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Dhaka
-      - SUBFOLDER=/
       - TITLE=Linux-Coder
     network_mode: service:tailscale
     restart: always
@@ -24,7 +23,6 @@ services:
     volumes:
       - /dev/net/tun:/dev/net/tun
     environment:
-      - TS_AUTHKEY=tskey-auth-kVTTehhFJb11CNTRL-zRk9vK5EFxbC38ZoBhBbwb7dWpjCmyGvd
+      - TS_AUTHKEY=tskey-auth-kCtydA5gZ521CNTRL-77KYwpiGfZBmKcuJHs3GaB8YGC8oPFsS8
       - TS_STATEFUL=true
     restart: on-failure
-    
