@@ -8,14 +8,12 @@ services:
     cap_add:
       - NET_ADMIN
     ports:
-      - 3389:3389
       - 8006:8006
+      - 3389:3389/tcp
+      - 3389:3389/udp
     stop_grace_period: 2m
     environment:
       VERSION: "10"
-      RAM_SIZE: "12G"
-      CPU_CORES: "4"
-    volumes:
-      - ./win_data:/storage
-    restart: on-failure
-    
+      RAM_SIZE: "4G"
+      CPU_CORES: "2"
+      
